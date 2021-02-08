@@ -2,13 +2,45 @@ spring:
   application:
     name: anquan
   datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/xinguan?useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT%2B8
-    username: root
-    password: root
+    dynamic:
+      primary: master
+      strict: false
+      datasource:
+        master:
+          url: jdbc:mysql://localhost:3306/xinguan?useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT%2B8
+          driver-class-name: com.mysql.cj.jdbc.Driver
+          username: root
+          password: root
+        slave_1:
+          url: jdbc:sqlserver://192.168.8.238:1433;DatabaseName=API
+          driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+          username: sa
+          password: Server123
+        slave_2:
+          url: jdbc:mysql://192.168.8.66:3306/dcs4?useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT%2B8
+          driver-class-name: com.mysql.cj.jdbc.Driver
+          username: root
+          password: zyz328yike
+        slave_3:
+          url: jdbc:mysql://192.168.8.66:3306/dcs_his?useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT%2B8
+          driver-class-name: com.mysql.cj.jdbc.Driver
+          username: root
+          password: zyz328yike
+        slave_4:
+          url: jdbc:sqlserver://192.168.8.185:1433;DatabaseName=scms
+          driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+          username: sa
+          password: 123456
+
+
+
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8
+  servlet:
+    multipart:
+      max-file-size: 1024MB
+      max-request-size: 1024MB
 server:
   port: 8098
 mybatis-plus:
@@ -20,3 +52,9 @@ mybatis-plus:
       logic-delete-value: 1
       logic-not-delete-value: 0
   mapper-locations: classpath*:/mapper/*.xml
+  type-aliases-package: com.nanjingtaibai.system.entity
+alioss:
+  endpoint: oss-cn-hangzhou.aliyuncs.com
+  accessKeyId: LTAI4GBF35rRHewjBC1KiBju
+  accessKeySecret: tusPu4llhMrH1z4bogFle1YfpnIucT
+  bucketName: anquan1

@@ -10,7 +10,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.4.0</version>
+        <version>2.3.3.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.nanjingtaibai</groupId>
@@ -32,6 +32,14 @@
         <mysql-java.version>8.0.13</mysql-java.version>
         <!--knife4j美化swagger-->
         <knife4j-version>2.0.7</knife4j-version>
+        <!--alioss-->
+        <ali-oss>3.10.2</ali-oss>
+        <!--日期格式转换-->
+        <jodaTime-version>2.9.9</jodaTime-version>
+        <!--多数据源动态切换-->
+        <dynamic-version>3.3.1</dynamic-version>
+        <!--微信企业号-->
+        <weixin-version>3.6.0</weixin-version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -69,6 +77,26 @@
                 <groupId>com.github.xiaoymin</groupId>
                 <artifactId>knife4j-spring-boot-starter</artifactId>
                 <version>${knife4j-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.aliyun.oss</groupId>
+                <artifactId>aliyun-sdk-oss</artifactId>
+                <version>${ali-oss}</version>
+            </dependency>
+            <dependency>
+                <groupId>joda-time</groupId>
+                <artifactId>joda-time</artifactId>
+                <version>${jodaTime-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>dynamic-datasource-spring-boot-starter</artifactId>
+                <version>${dynamic-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.binarywang</groupId>
+                <artifactId>weixin-java-cp</artifactId>
+                <version>${weixin-version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

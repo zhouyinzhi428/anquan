@@ -1,10 +1,11 @@
 package com.nanjingtaibai.system.entity;
 
-import com.baomidou.mybatisplus.annotation.TableName;
-import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.*;
+
 import java.util.Date;
-import com.baomidou.mybatisplus.annotation.TableId;
 import java.io.Serializable;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -48,8 +49,9 @@ public class User implements Serializable {
     private Integer status;
 
     @ApiModelProperty(value = "创建时间")
+    @TableField(fill = FieldFill.INSERT)
     private Date createTime;
-
+    @TableField(fill = FieldFill.INSERT_UPDATE)
     @ApiModelProperty(value = "修改时间")
     private Date modifiedTime;
 
@@ -64,11 +66,21 @@ public class User implements Serializable {
 
     @ApiModelProperty(value = "密码")
     private String password;
-
+    @ApiModelProperty(value = "生日")
+    @JsonFormat(pattern = "yyyy-MM-dd",timezone = "GMT+8")
     private Date birth;
 
     @ApiModelProperty(value = "部门id")
     private Long departmentId;
+
+    @ApiModelProperty(value = "逻辑删除")
+    private Boolean deleted;
+
+    @ApiModelProperty(value = "部门名称")
+    @TableField(exist = false)
+    private String name;
+    @ApiModelProperty(value = "附件列表")
+    private String filelist;
 
 
 }
